@@ -81,7 +81,7 @@ CXString clang_Cursor_getOperatorString(CXCursor cursor)
     }
 
     if (cursor.kind == CXCursor_UnaryOperator) {
-        clang::UnaryOperator *op = (clang::UnaryOperator*) clang::getCursorExpr(cursor);
+        clang::UnaryOperator *op = (clang::UnaryOperator*) clang::getCursorStmt(cursor);
         return clang::cxstring::createDup(clang::UnaryOperator::getOpcodeStr(op->getOpcode()));
     }
 
@@ -106,7 +106,7 @@ clang::BinaryOperatorKind clang_Cursor_getBinaryOpcode(CXCursor cursor)
 clang::UnaryOperatorKind clang_Cursor_getUnaryOpcode(CXCursor cursor)
 {
     if (cursor.kind == CXCursor_UnaryOperator) {
-        clang::UnaryOperator *op = (clang::UnaryOperator*) clang::getCursorExpr(cursor);
+        clang::UnaryOperator *op = (clang::UnaryOperator*) clang::getCursorStmt(cursor);
         return static_cast<clang::UnaryOperatorKind>(op->getOpcode());
     }
 
